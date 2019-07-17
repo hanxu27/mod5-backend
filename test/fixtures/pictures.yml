@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  park: 
+  user: 
+  trip: 
+  url,: MyString
+  title,: MyString
+  caption: MyString
+
+two:
+  park: 
+  user: 
+  trip: 
+  url,: MyString
+  title,: MyString
+  caption: MyString

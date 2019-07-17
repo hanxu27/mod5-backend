@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  park: 
+  title,: MyString
+  description,: MyString
+  season,: MyString
+  year: 1
+
+two:
+  user: two
+  park: 
+  title,: MyString
+  description,: MyString
+  season,: MyString
+  year: 1
