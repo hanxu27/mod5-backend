@@ -3,7 +3,7 @@
 class TripsController < ApplicationController
   def index
     # page = params[:page] || 1
-    @pagy, @trips = pagy_array(Trip.all.sort_by { |p| p['updated_at'] }.reverse)
+    @pagy, @trips = pagy_array(Trip.all.sort_by { |t| t['updated_at'] }.reverse)
     render json: @trips, status: :ok
   end
 
@@ -18,6 +18,7 @@ class TripsController < ApplicationController
       render json: trip, status: :created
     else
       render json: trip.erros.full_messages, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -27,6 +28,7 @@ class TripsController < ApplicationController
   end
 
   private
+
   def s_params
     params.require(:trip).permit(:user_id, :park_id, :title, :description, :season, :year)
   end

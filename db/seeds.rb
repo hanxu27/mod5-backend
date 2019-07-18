@@ -64,31 +64,31 @@ end
 i = 0
 while i <= 4
   Trip.create(user: users[1],
-                     park: parks[i],
-                     title: Faker::Lorem.sentence,
-                     description: Faker::Lorem.paragraph_by_chars(256, false),
-                     season: 'Summer',
-                     year: '2020')
+              park: parks[i],
+              title: Faker::Lorem.sentence,
+              description: Faker::Lorem.paragraph_by_chars(256, false),
+              season: 'Summer',
+              year: '2020')
   i += 1
 end
 
 i = 0
 while i < 3
   Trip.create(user: users[2],
-                   park: parks[i],
-                   title: Faker::Lorem.sentence,
-                   description: Faker::Lorem.paragraph_by_chars(256, false),
-                   season: 'Summer',
-                   year: '2018')
+              park: parks[i],
+              title: Faker::Lorem.sentence,
+              description: Faker::Lorem.paragraph_by_chars(256, false),
+              season: 'Summer',
+              year: '2018')
   i += 1
 end
 
 while i <= 4
   Trip.create(user: users[2],
-                     park: parks[i],
-                     title: Faker::Lorem.sentence,
-                     description: Faker::Lorem.paragraph_by_chars(256, false),
-                     season: 'Summer',
-                     year: '2018')
+              park: parks[i],
+              title: Faker::Lorem.sentence,
+              description: Faker::Lorem.paragraph_by_chars(256, false),
+              season: 'Summer',
+              year: '2018')
   i += 1
 end

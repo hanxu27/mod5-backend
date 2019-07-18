@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_16_223341) do
+ActiveRecord::Schema.define(version: 2019_07_16_223335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "likes", force: :cascade do |t|
+    t.string "likable_type"
+    t.bigint "likable_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["likable_type", "likable_id"], name: "index_likes_on_likable_type_and_likable_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
 
   create_table "parks", force: :cascade do |t|
     t.string "latLong"
@@ -29,15 +39,6 @@ ActiveRecord::Schema.define(version: 2019_07_16_223341) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "picture_likes", force: :cascade do |t|
-    t.bigint "picture_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["picture_id"], name: "index_picture_likes_on_picture_id"
-    t.index ["user_id"], name: "index_picture_likes_on_user_id"
-  end
-
   create_table "pictures", force: :cascade do |t|
     t.bigint "park_id"
     t.bigint "user_id"
@@ -50,15 +51,6 @@ ActiveRecord::Schema.define(version: 2019_07_16_223341) do
     t.index ["park_id"], name: "index_pictures_on_park_id"
     t.index ["trip_id"], name: "index_pictures_on_trip_id"
     t.index ["user_id"], name: "index_pictures_on_user_id"
-  end
-
-  create_table "trip_likes", force: :cascade do |t|
-    t.bigint "trip_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["trip_id"], name: "index_trip_likes_on_trip_id"
-    t.index ["user_id"], name: "index_trip_likes_on_user_id"
   end
 
   create_table "trips", force: :cascade do |t|
@@ -84,13 +76,10 @@ ActiveRecord::Schema.define(version: 2019_07_16_223341) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "picture_likes", "pictures"
-  add_foreign_key "picture_likes", "users"
+  add_foreign_key "likes", "users"
   add_foreign_key "pictures", "parks"
   add_foreign_key "pictures", "trips"
   add_foreign_key "pictures", "users"
-  add_foreign_key "trip_likes", "trips"
-  add_foreign_key "trip_likes", "users"
   add_foreign_key "trips", "parks"
   add_foreign_key "trips", "users"
 end
