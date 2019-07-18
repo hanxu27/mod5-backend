@@ -10,7 +10,7 @@
 limit = 100
 URL_BASE = "https://developer.nps.gov/api/v1/parks?fields=images&limit=#{limit}&start="
 start = 1
-API_KEY = '&api_key=Hbwwee9IX6XMWbZrmgd6XgAoM8WsOzXcGqbR3WoK'
+API_KEY = "&api_key=#{ENV['NPS_API_KEY']}"
 
 while start < 500
   parks = JSON.parse(open(URL_BASE + start.to_s + API_KEY).read)['data']

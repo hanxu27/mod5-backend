@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ParksController < ApplicationController
+  skip_before_action :authorized
+
   def show
     park = Park.find(params[:id])
     render json: park, status: :ok
