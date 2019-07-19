@@ -26,11 +26,11 @@ class User < ApplicationRecord
     parks_progress('national park')
   end
 
-  def national_monument
-    parks_progress('national park')
+  def national_monument_progress
+    parks_progress('national monument')
   end
 
-  def national_preserve
-    parks_preserve('national perserve')
+  def national_preserve_progress
+    parks_progress('national preserve')
   end
 end

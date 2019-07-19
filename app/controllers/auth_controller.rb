@@ -7,7 +7,7 @@ class AuthController < ApplicationController
     user = User.find_by(username: s_params[:username])
     if user&.authenticate(s_params[:password])
       token = encode_token(user_id: user.id)
-      render json: { user: user, token: token }, status: :accepted
+      render json: { user: UserSerializer.new(user), token: token }, status: :accepted
     else
       render json: { message: 'Invalid Login' }, status: :unauthorized
     end
