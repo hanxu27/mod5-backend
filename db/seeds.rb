@@ -15,6 +15,8 @@ API_KEY = "&api_key=#{ENV['NPS_API_KEY']}"
 while start < 500
   parks = JSON.parse(open(URL_BASE + start.to_s + API_KEY).read)['data']
   parks.each do |p|
+    next unless p['latLong'] != ''
+
     new_park = {}
     new_park[:latLong] = p['latLong']
     new_park[:name] = p['name']

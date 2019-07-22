@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :pictures, only: [:index]
   resources :trips
   resources :users
-  get '/getUser', to: 'users#show_user'
+  get '/getUser', to: 'users#get_user'
 
   # get '/parks&q=:query                                                                                                                                                                                                                                                                                                                                                                              ``', to: 'park#index'
   resources :parks, only: %i[show index]
