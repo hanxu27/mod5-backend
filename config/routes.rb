@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :users
   get '/getUser', to: 'users#get_user'
 
-  # get '/parks&q=:query                                                                                                                                                                                                                                                                                                                                                                              ``', to: 'park#index'
   resources :parks, only: %i[show index]
+  get '/parks&search=:query', to: 'parks#index'
 
   post '/login', to: 'auth#create'
 

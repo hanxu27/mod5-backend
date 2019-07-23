@@ -9,7 +9,12 @@ class ParksController < ApplicationController
   end
 
   def index
-    params[:query] ? parks = Park.designation_select(params[:query]) : parks = Park.designation_select
+    if params[:query] == 'Others'
+      parks = Park.others
+    else
+      query = params[:query]&.gsub('+', ' ')
+      parks = query ? Park.designation_select(query) : Park.designation_select
+    end
     render_parks = []
     parks.each do |p|
       park = ParkSerializer.new(p).attributes
