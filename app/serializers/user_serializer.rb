@@ -11,5 +11,7 @@ class UserSerializer < ActiveModel::Serializer
              :most_liked_pictures,
              :national_park_progress,
              :national_monument_progress,
-             :national_preserve_progress
+             :national_preserve_progress,
+             :historic_site_progress,
+             :historical_park_progress
 end

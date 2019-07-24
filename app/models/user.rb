@@ -31,6 +31,14 @@ class User < ApplicationRecord
   end
 
   def national_preserve_progress
-    parks_progress('national preserve')
+    parks_progress('preserve')
+  end
+
+  def historic_site_progress
+    parks_progress('national historic site')
+  end
+
+  def historical_park_progress
+    parks_progress('national historical park')
   end
 end
