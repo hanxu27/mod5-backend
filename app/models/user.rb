@@ -7,6 +7,15 @@ class User < ApplicationRecord
   has_many :parks, through: :trips
   has_many :likes
 
+  validates :username, :password, :firstname, :lastname, presence: true
+  validates :username, uniqueness: true
+  validates :password, length: { minimum: 5 }
+
+  def sorted_trips
+    sort_arr = %w[Spring Summer Fall Winter]
+    trips.sort_by { |t| [t['year'], sort_arr.index(t['season'])] }.reverse.map{|t| TripSerializer.new(t) }
+  end
+
   def most_liked_trips
     trips.sort_by(&:likes).reverse[0...2]
   end

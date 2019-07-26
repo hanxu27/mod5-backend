@@ -95,7 +95,8 @@ while i <= 4
   i += 1
 end
 
-Picture.all.find { |p| p.url == 'https://www.nps.gov/customcf/structured_data/upload/IMG_4956.jpg' }.destroy
-Picture.all.find { |p| p.url == 'https://www.nps.gov/customcf/structured_data/upload/DSC_0833.png' }.destroy
-Picture.all.find { |p| p.url == 'https://www.nps.gov/common/uploads/structured_data/3C82F638-1DD8-B71B-0B93D85F83991274.jpg' }.destroy
-Picture.all.find { |p| p.url == 'https://www.nps.gov/common/uploads/structured_data/3C82F405-1DD8-B71B-0B2EB1FEC35F52B9.jpg' }.destroy
+pic_arr = ['https://www.nps.gov/customcf/structured_data/upload/IMG_4956.jpg', 'https://www.nps.gov/customcf/structured_data/upload/DSC_0833.png', 'https://www.nps.gov/common/uploads/structured_data/3C82F638-1DD8-B71B-0B93D85F83991274.jpg', 'https://www.nps.gov/common/uploads/structured_data/3C82F405-1DD8-B71B-0B2EB1FEC35F52B9.jpg']
+pic_arr.each do |pic|
+  bad_pic = Picture.all.find { |p| p.url == pic }
+  bad_pic&.destroy
+end

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   skip_before_action :authorized, only: [:create]
 
   def get_user
-    render json: current_user, status: :ok
+    render json: ProfileSerializer.new(@user), status: :ok
   end
 
   def show
@@ -14,11 +14,11 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(s_params)
-    if @user.save!
-      token = enconde_token(user_id: user.id)
-      render json: { user: user, token: token }, status: :created
+    if user.save
+      token = encode_token(user_id: user.id)
+      render json: { user: ProfileSerializer.new(user), token: token }, status: :created
     else
-      render json: user.errors.full_messages, status: :not_acceptable
+      render json: { message: user.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
