@@ -11,9 +11,13 @@ class User < ApplicationRecord
   validates :username, uniqueness: true
   validates :password, length: { minimum: 5 }
 
+  def last_picture
+    pictures.empty? ? false : pictures.max_by(&:updated_at).url
+  end
+
   def sorted_trips
     sort_arr = %w[Spring Summer Fall Winter]
-    trips.sort_by { |t| [t['year'], sort_arr.index(t['season'])] }.reverse.map{|t| TripSerializer.new(t) }
+    trips.sort_by { |t| [t['year'], sort_arr.index(t['season'])] }.reverse.map { |t| TripSerializer.new(t) }
   end
 
   def most_liked_trips
