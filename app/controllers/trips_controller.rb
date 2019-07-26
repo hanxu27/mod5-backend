@@ -4,11 +4,13 @@ class TripsController < ApplicationController
   skip_before_action :authorized, only: [:index]
 
   def index
-    # page = params[:page] || 1
+    page = params[:page] || 1
     sort_arr = %w[Spring Summer Fall Winter]
-    @pagy, @trips = pagy_array(Trip.all.sort_by { |t| [t['year'], sort_arr.index(t['season'])] }.reverse)
-    # @trips = Trip.all.sort_by { |t| [t['year'], sort_arr.index(t['season'])] }.reverse
-    render json: @trips, status: :ok
+    sorted_trips = Trip.all.sort_by { |t| [t['year'], sort_arr.index(t['season'])] }.reverse
+    @pagy, @trips = pagy_array(sorted_trips, page: page, items: 5)
+    # byebug
+    @display_trips = @trips.map { |t| TripSerializer.new(t) }
+    render json: { hasMore: !!@pagy.next, trips: @display_trips }, status: :ok
   end
 
   def show

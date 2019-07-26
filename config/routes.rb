@@ -2,7 +2,10 @@
 
 Rails.application.routes.draw do
   resources :pictures, only: [:index]
+
   resources :trips
+  get '/trips&page=:page', to: 'trips#index'
+
   resources :users
   get '/getUser', to: 'users#get_user'
 

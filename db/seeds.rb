@@ -70,7 +70,7 @@ while i <= 4
               title: Faker::Lorem.sentence,
               description: Faker::Lorem.paragraph_by_chars(256, false),
               season: 'Summer',
-              year: '2020')
+              year: '2000')
   i += 1
 end
 
@@ -81,7 +81,7 @@ while i < 3
               title: Faker::Lorem.sentence,
               description: Faker::Lorem.paragraph_by_chars(256, false),
               season: 'Summer',
-              year: '2018')
+              year: '2001')
   i += 1
 end
 
@@ -90,8 +90,8 @@ while i <= 4
               park: parks[i],
               title: Faker::Lorem.sentence,
               description: Faker::Lorem.paragraph_by_chars(256, false),
-              season: 'Summer',
-              year: '2018')
+              season: 'Winter',
+              year: '2001')
   i += 1
 end
 
