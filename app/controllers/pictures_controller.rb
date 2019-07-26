@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 class PicturesController < ApplicationController
-  def index
-    # page = params[:page] || 1
-    @pagy, @pictures = pagy_array(Picture.all.sort_by { |p| p['updated_at'] }.reverse)
-    render json: @pictures, status: :ok
-  end
+  skip_before_action :authorized, only: [:create]
+
+  # def index
+  #   page = params[:page] || 1
+  #   @pagy, @pictures = pagy_array(Picture.all.sort_by { |p| p['updated_at'] }.reverse)
+  #   render json: @pictures, status: :ok
+  # end
 
   def create
     picture = Picture.new(s_params)
@@ -14,6 +16,10 @@ class PicturesController < ApplicationController
     else
       render json: picture.errors.full_messages, status: :unprocessable_entity
     end
+  end
+
+  def delete
+    byebug
   end
 
   private

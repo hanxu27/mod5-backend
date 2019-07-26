@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :pictures, only: [:index]
+  resources :pictures, only: [:create]
 
   resources :trips
   get '/trips&page=:page', to: 'trips#index'
