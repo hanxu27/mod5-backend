@@ -18,8 +18,14 @@ class PicturesController < ApplicationController
     end
   end
 
-  def delete
-    byebug
+  def destroy
+    picture = Picture.find(params[:id])
+    if current_user.id == picture.user.id
+      picture.destroy
+      render json: picture, status: :ok
+    else
+      render json: { message: ['cannot delete picture that are not yours'] }, status: :unauthorized
+    end
   end
 
   private

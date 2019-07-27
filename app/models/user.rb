@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 5 }
 
   def last_picture
-    pictures.empty? ? false : pictures.max_by(&:updated_at).url
+    pictures.empty? ? false : pictures.max_by(&:updated_at)
   end
 
   def sorted_trips
