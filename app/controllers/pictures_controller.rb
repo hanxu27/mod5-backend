@@ -12,7 +12,7 @@ class PicturesController < ApplicationController
   # end
 
   def flickr_pictures
-    sort = '&sort=interestingness-asc'
+    sort = '&sort=interestingness-desc'
     url_flickr = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json'
     api_key = "&api_key=#{ENV['FLICKR_API_KEY']}"
     extras = '&extras=url_h,url_l,url_b,url_c,url_z,url_m'
