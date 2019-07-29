@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   resources :pictures, only: %i[create destroy]
+  get '/pictures&search=:tag&page=:page', to: 'pictures#flickr_pictures'
 
   resources :trips
   get '/trips&page=:page', to: 'trips#index'
