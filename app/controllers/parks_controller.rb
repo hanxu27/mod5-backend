@@ -23,4 +23,15 @@ class ParksController < ApplicationController
     end
     render json: render_parks, status: :ok
   end
+
+  def nps_search
+    if params[:query] == 'parks'
+      url = "https://developer.nps.gov/api/v1/#{params[:query]}?parkCode=#{params[:park_code]}&fields=entranceFees"
+    else
+      url = "https://developer.nps.gov/api/v1/#{params[:query]}?parkCode=#{params[:park_code]}"
+    end
+    api_key = "&api_key=#{ENV['NPS_API_KEY']}"
+    information = JSON.parse(open(url + api_key).read)['data'][0..15]
+    render json: information, status: :ok
+  end
 end

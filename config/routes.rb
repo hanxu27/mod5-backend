@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :parks, only: %i[show index]
   get '/parks&search=:query', to: 'parks#index'
+  get '/parks&nps_search=:query&parkCode=:park_code', to: 'parks#nps_search'
 
   post '/login', to: 'auth#create'
 
