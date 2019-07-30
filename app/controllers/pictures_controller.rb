@@ -36,8 +36,9 @@ class PicturesController < ApplicationController
 
   def create
     picture = Picture.new(s_params)
+    user = picture.user
     if picture.save!
-      render json: picture, status: :created
+      render json: ProfileSerializer.new(user), status: :created
     else
       render json: picture.errors.full_messages, status: :unprocessable_entity
     end
