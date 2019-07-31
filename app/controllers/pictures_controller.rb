@@ -28,7 +28,6 @@ class PicturesController < ApplicationController
       picture[:src] = p['url_h'] || p['url_l'] || p['width_b'] || p['url_c'] || p['url_z'] || p['url_m']
       picture[:width] = (p['width_h'] || p['width_l'] || p['width_b'] || p['width_c'] || p['width_z'] || p['width_m']).to_f
       picture[:height] = (p['height_h'] || p['height_l'] || p['width_b'] || p['height_c'] || p['height_z'] || p['height_m']).to_f
-      # byebug
       picture
     end
     render json: display_pictures, status: :ok
@@ -37,10 +36,11 @@ class PicturesController < ApplicationController
   def create
     picture = Picture.new(s_params)
     user = picture.user
-    if picture.save!
+    # byebug
+    if picture.save
       render json: ProfileSerializer.new(user), status: :created
     else
-      render json: picture.errors.full_messages, status: :unprocessable_entity
+      render json: { message: picture.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
