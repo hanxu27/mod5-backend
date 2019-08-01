@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require 'open-uri'
 
 class Picture < ApplicationRecord
   belongs_to :park
@@ -11,18 +10,17 @@ class Picture < ApplicationRecord
   validate :valid_image_url
 
   def valid_image_url
-      if URI.parse(url).kind_of?(URI::HTTP)  
+    if URI.parse(url).is_a?(URI::HTTP)
       url_ext = url.split('.')[-1].downcase
       pic_ext = %w[
         tif tiff gif jpeg jpg png
       ]
-      byebug
-      unless open(url).status[0] == '200' &&  pic_ext.include?(url_ext)
+      unless open(url).status[0] == '200' && pic_ext.include?(url_ext)
         errors.add(:url, 'error: please provide a valid URL of an image')
       end
     else
-      errors.add(:url, 'error: please provide a valid URL') 
-    end
+      errors.add(:url, 'error: please provide a valid URL')
+  end
   end
 
   def like_count

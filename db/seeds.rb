@@ -1,12 +1,5 @@
 # frozen_string_literal: true
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 limit = 100
 URL_BASE = "https://developer.nps.gov/api/v1/parks?fields=images&limit=#{limit}&start="
 start = 1
@@ -39,64 +32,64 @@ while start < 500
   start += 100
 end
 
-3.times do
-  fullname = Faker::FunnyName.two_word_name.split(' ')
-  user = User.new(username: Faker::Kpop.iii_groups,
-                  password: '12345',
-                  firstname: fullname[0],
-                  lastname: fullname[1],
-                  profile_url: Faker::LoremFlickr.image)
-  user.save
-end
-
-users = [User.first, User.all[1], User.all[2]]
-parks = [Park.all[80], Park.all[11], Park.all[7], Park.all[90], Park.all[138]]
-
-i = 0
-while i <= 4
-  Trip.create(user: users[0],
-              park: parks[i],
-              title: Faker::Lorem.sentence,
-              description: Faker::Lorem.paragraph_by_chars(256, false),
-              season: 'Summer',
-              year: '2018')
-  i += 1
-end
-
-i = 0
-while i <= 4
-  Trip.create(user: users[1],
-              park: parks[i],
-              title: Faker::Lorem.sentence,
-              description: Faker::Lorem.paragraph_by_chars(256, false),
-              season: 'Summer',
-              year: '2000')
-  i += 1
-end
-
-i = 0
-while i < 3
-  Trip.create(user: users[2],
-              park: parks[i],
-              title: Faker::Lorem.sentence,
-              description: Faker::Lorem.paragraph_by_chars(256, false),
-              season: 'Summer',
-              year: '2001')
-  i += 1
-end
-
-while i <= 4
-  Trip.create(user: users[2],
-              park: parks[i],
-              title: Faker::Lorem.sentence,
-              description: Faker::Lorem.paragraph_by_chars(256, false),
-              season: 'Winter',
-              year: '2001')
-  i += 1
-end
-
 pic_arr = ['https://www.nps.gov/customcf/structured_data/upload/IMG_4956.jpg', 'https://www.nps.gov/customcf/structured_data/upload/DSC_0833.png', 'https://www.nps.gov/common/uploads/structured_data/3C82F638-1DD8-B71B-0B93D85F83991274.jpg', 'https://www.nps.gov/common/uploads/structured_data/3C82F405-1DD8-B71B-0B2EB1FEC35F52B9.jpg']
 pic_arr.each do |pic|
   bad_pic = Picture.all.find { |p| p.url == pic }
   bad_pic&.destroy
 end
+
+# 3.times do
+#   fullname = Faker::FunnyName.two_word_name.split(' ')
+#   user = User.new(username: Faker::Kpop.iii_groups,
+#                   password: '12345',
+#                   firstname: fullname[0],
+#                   lastname: fullname[1],
+#                   profile_url: Faker::LoremFlickr.image)
+#   user.save
+# end
+
+# users = [User.first, User.all[1], User.all[2]]
+# parks = [Park.all[80], Park.all[11], Park.all[7], Park.all[90], Park.all[138]]
+
+# i = 0
+# while i <= 4
+#   Trip.create(user: users[0],
+#               park: parks[i],
+#               title: Faker::Lorem.sentence,
+#               description: Faker::Lorem.paragraph_by_chars(256, false),
+#               season: 'Summer',
+#               year: '2018')
+#   i += 1
+# end
+
+# i = 0
+# while i <= 4
+#   Trip.create(user: users[1],
+#               park: parks[i],
+#               title: Faker::Lorem.sentence,
+#               description: Faker::Lorem.paragraph_by_chars(256, false),
+#               season: 'Summer',
+#               year: '2000')
+#   i += 1
+# end
+
+# i = 0
+# while i < 3
+#   Trip.create(user: users[2],
+#               park: parks[i],
+#               title: Faker::Lorem.sentence,
+#               description: Faker::Lorem.paragraph_by_chars(256, false),
+#               season: 'Summer',
+#               year: '2001')
+#   i += 1
+# end
+
+# while i <= 4
+#   Trip.create(user: users[2],
+#               park: parks[i],
+#               title: Faker::Lorem.sentence,
+#               description: Faker::Lorem.paragraph_by_chars(256, false),
+#               season: 'Winter',
+#               year: '2001')
+#   i += 1
+# end

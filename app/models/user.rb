@@ -10,6 +10,22 @@ class User < ApplicationRecord
   validates :username, :password, :firstname, :lastname, presence: true
   validates :username, uniqueness: true
   validates :password, length: { minimum: 5 }
+  validate :valid_image_url
+
+  def valid_image_url
+    url = profile_url
+    if URI.parse(url).is_a?(URI::HTTP)
+      url_ext = url.split('.')[-1].downcase
+      pic_ext = %w[
+        tif tiff gif jpeg jpg png
+      ]
+      unless pic_ext.include?(url_ext) && open(url).status[0] == '200'
+        errors.add(:url, 'error: please provide a valid URL of an image')
+      end
+    else
+      errors.add(:url, 'error: please provide a valid URL')
+    end
+  end
 
   def last_picture
     pictures.empty? ? false : LastPictureSerializer.new(pictures.max_by(&:updated_at))

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'open-uri'
-
 class PicturesController < ApplicationController
   skip_before_action :authorized, only: %i[create flickr_pictures]
 
