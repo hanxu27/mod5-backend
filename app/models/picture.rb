@@ -7,7 +7,7 @@ class Picture < ApplicationRecord
   has_many :likes, as: :likable
 
   validates :url, :title, :caption, presence: true
-  validate :valid_image_url
+  # validate :valid_image_url
 
   def valid_image_url
     if URI.parse(url).is_a?(URI::HTTP)
