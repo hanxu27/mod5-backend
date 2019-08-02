@@ -75,9 +75,6 @@ test:
 #
 production:
   <<: *default
-  adapter: postgresql
-  pool: 5
-  encoding: unicode
   database: backend_production
   username: backend
   password: <%= ENV['BACKEND_DATABASE_PASSWORD'] %>
