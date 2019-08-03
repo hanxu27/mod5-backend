@@ -32,6 +32,11 @@ while start < 500
   start += 100
 end
 
+p = Park.all.find(413)
+p.name = 'Haleakal'
+p.fullname = 'Haleakal National Park'
+p.save
+
 pic_arr = ['https://www.nps.gov/customcf/structured_data/upload/IMG_4956.jpg', 'https://www.nps.gov/customcf/structured_data/upload/DSC_0833.png', 'https://www.nps.gov/common/uploads/structured_data/3C82F638-1DD8-B71B-0B93D85F83991274.jpg', 'https://www.nps.gov/common/uploads/structured_data/3C82F405-1DD8-B71B-0B2EB1FEC35F52B9.jpg']
 pic_arr.each do |pic|
   bad_pic = Picture.all.find { |p| p.url == pic }
