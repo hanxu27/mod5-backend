@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   skip_before_action :authorized, only: [:create]
 
   def get_user
-    render json: @user, each_serializer: ProfileSerializer, status: :ok
+    render json: current_user, serializer: ProfileSerializer, status: :ok
   end
 
   def show
