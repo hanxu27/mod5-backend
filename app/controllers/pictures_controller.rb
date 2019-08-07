@@ -36,7 +36,7 @@ class PicturesController < ApplicationController
     user = picture.user
     # byebug
     if picture.save
-      render json: ProfileSerializer.new(user), status: :created
+      render json: user, serializer: ProfileSerializer, status: :ok
     else
       render json: { message: picture.errors.full_messages }, status: :unprocessable_entity
     end
